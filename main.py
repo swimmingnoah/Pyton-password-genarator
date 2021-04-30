@@ -3,7 +3,6 @@ import string
 import csv
 
 
-
 def password_input():
     website = input(
         "What website you would like to create a new password for? ")
@@ -40,11 +39,20 @@ def write_password():
 
 
 def writeItems(website, email, password):
-    vault = 'super_secret_passwords.txt'
+    vault = 'super_secret_passwords.csv'
+    headerList = ['Website', 'email', 'password']
     with open(vault, mode='a+') as vault:
         vault_writer = csv.writer(
-            vault, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        vault_writer.writerow([website, email, password])
+            vault, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL,)
+        vault_writer.writerow(
+            ['Website:' + website, 'Email:' + email, 'Password:' + password])
+
+
+def readItems():
+    with open('super_secret_passwords.csv', newline='') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in spamreader:
+            print(', '.join(row))
 
 
 def main():
@@ -65,10 +73,10 @@ def main():
         writeItems(website, email, password)
 
     elif option_choice == 2:
-        view_pass()
+        readItems()
 
     else:
-        print("please pick a number between 1 and 3")
+        print("Thank you for using the password generator")
 
 
 main()
