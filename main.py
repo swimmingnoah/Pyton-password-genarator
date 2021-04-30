@@ -39,17 +39,17 @@ def write_password():
 
 
 def writeItems(website, email, password):
-    vault = 'super_secret_passwords.csv'
+    vault = 'super_secret_passwords.txt'
     headerList = ['Website', 'email', 'password']
     with open(vault, mode='a+') as vault:
         vault_writer = csv.writer(
             vault, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL,)
         vault_writer.writerow(
-            ['Website:' + website, 'Email:' + email, 'Password:' + password])
+            ['Website: ' + website, ' Email: ' + email, ' Password: ' + password])
 
 
 def readItems():
-    with open('super_secret_passwords.csv', newline='') as csvfile:
+    with open('super_secret_passwords.txt', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in spamreader:
             print(', '.join(row))
