@@ -71,9 +71,11 @@ def main():
         password = password_creator(x[0])
         password_print(website, email, password)
         writeItems(website, email, password)
+        main()
 
     elif option_choice == 2:
         readItems()
+        main()
 
     else:
         print("Thank you for using the password generator")
